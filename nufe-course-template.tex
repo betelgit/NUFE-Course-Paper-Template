@@ -1,0 +1,306 @@
+\documentclass[a4paper]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{graphicx,array,setspace,tabularx,tikz}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage{ulem} % 用于下划线
+\usepackage{etoolbox}
+\usepackage{float,url,booktabs} % 画表
+
+\newcommand{\dd}{\mathrm{d}} % 微分号使用正体:"\dd "
+
+\newtheorem{definition}{定义}[section]
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}{命题}[section]
+\newtheorem{example}{例}[section]
+\newtheorem{remark}{注}[section]
+
+%% 中文字体与字号设置
+\usepackage[UTF8, scheme=plain]{ctex}  % 使用 ctex 套件
+\usepackage{fontspec}
+\setCJKmainfont{仿宋}      % 正文字体
+\setmainfont{Times New Roman}
+\setCJKsansfont{黑体}      % 标题字体（无衬线）
+\setCJKfamilyfont{fsong}{仿宋}
+\setCJKfamilyfont{hei}{黑体}
+
+
+%% 页面设置
+\usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=2cm]{geometry}
+\usepackage{setspace}
+% 设置行距为28磅
+\newcommand{\zhengwen}{\CJKfamily{fsong}\fontsize{12pt}{28pt}\selectfont}
+\newcommand{\zhaiyao}{\CJKfamily{fsong}\fontsize{10.5pt}{28pt}\selectfont}
+\newcommand{\cankaowenxian}{\CJKfamily{fsong}\fontsize{10.5pt}{15.75pt}\selectfont}
+\newcommand{\biaoge}{\CJKfamily{fsong}\fontsize{10.5pt}{13.125pt}\selectfont}
+
+
+%% 页眉设置
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\fontsize{10.5pt}{28pt}\selectfont\CJKfamily{fsong} 南京财经大学本科课程论文}
+\fancyfoot[C]{\thepage}
+
+
+%% 标题格式
+\usepackage{titlesec}
+% 一级标题：四号黑体
+\titleformat{\section}
+  {\normalfont\CJKfamily{hei}\fontsize{14pt}{28pt}\selectfont}
+  {\thesection}{1em}{}
+% 二级及以下标题：小四号仿宋
+\titleformat{\subsection}
+  {\normalfont\CJKfamily{fsong}\fontsize{12pt}{28pt}\selectfont}
+  {\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalfont\CJKfamily{fsong}\fontsize{12pt}{28pt}\selectfont}
+  {\thesubsubsection}{1em}{}
+% 图表名
+\usepackage{caption}
+\captionsetup[figure]{
+  name=图,
+  labelsep=space,
+  font=normalsize  % 仿宋，五号
+}
+\captionsetup[table]{
+  name=表,
+  labelsep=space,
+  font=normalsize  % 仿宋，五号
+}
+\newcommand{\biaocaption}[1]{\caption{\hspace{1em}#1}}
+\newcommand{\tucaption}[1]{\caption{\hspace{1em}#1}}
+
+\setlength{\baselineskip}{28pt} % 统一固定行距28磅
+
+
+%% 正文段落设置
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0em}
+
+\makeatletter
+\newcommand{\Uline}[2][4cm]{\hskip1pt\underline{\hb@xt@ #1{\hss#2\hss}}\hskip3pt}
+\makeatother
+
+\begin{document}
+
+%% 封面页
+
+% 封面页参考部分了Weierstrass老师的设计
+% 封面倒是可以用word文档直接打印
+\begin{titlepage}
+
+\vspace*{\baselineskip} % 顶部空行
+
+\centerline{\bfseries\heiti\zihao{1} 南~京~财~经~大~学 }\vspace*{6mm}
+\centerline{\bfseries\heiti\zihao{2} 本科课程论文}\vspace*{6mm}
+\centerline{\zihao{3} 2024 -- 2025 学年第二学期}\vspace*{12mm}
+\begin{center}
+{\songti\zihao{-3}
+课程名称: \Uline[6cm]{\songti\zihao{-3} 课程论文}\par\vspace*{3mm}
+题\qquad 目: \Uline[6cm]{ \qquad  南财本科生课程论文\LaTeX 模板}\par\vspace*{3mm}
+姓\qquad 名: \Uline[6cm]{ Betelgit }\par\vspace*{3mm}
+班\qquad 级: \Uline[6cm]{ 金数2201}\par\vspace*{3mm}
+学\qquad 号: \Uline[6cm]{ 212022xxxx}
+}
+\end{center}
+
+\begin{center}
+\par\vspace*{6mm}{\zihao{4}\fangsong
+\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
+  \hline
+
+  \begin{minipage}[c][1.5cm][c]{1.5cm}
+    \centering 评分 \\ 项目
+  \end{minipage} & 
+  \begin{minipage}[c][2cm][c]{1.5cm}\centering 项目1\end{minipage} & 
+  \begin{minipage}[c][2cm][c]{\hsize}\centering 项目2\end{minipage} & 
+  \begin{minipage}[c][2cm][c]{\hsize}\centering 项目3\end{minipage} & 
+  \begin{minipage}[c][2cm][c]{\hsize}\centering 项目4\end{minipage} & 
+  \begin{minipage}[c][2cm][c]{\hsize}\centering 总分\end{minipage} \\
+  \hline
+  
+  \begin{minipage}[c][1.5cm][c]{1.5cm}\centering 分数\end{minipage} & 
+  \begin{minipage}[c][1.5cm][c]{\hsize}\centering \end{minipage} & 
+  \begin{minipage}[c][1.5cm][c]{\hsize}\centering \end{minipage} & 
+  \begin{minipage}[c][1.5cm][c]{\hsize}\centering \end{minipage} & 
+  \begin{minipage}[c][1.5cm][c]{\hsize}\centering \end{minipage} & 
+  \begin{minipage}[c][1.5cm][c]{\hsize}\centering \end{minipage} \\
+  \hline
+  
+  \begin{minipage}[c][1.5cm][c]{1.5cm}\centering 得分\end{minipage} & 
+  \begin{minipage}[c][1.5cm][c]{\hsize}\centering \end{minipage} & 
+  \begin{minipage}[c][1.5cm][c]{\hsize}\centering \end{minipage} & 
+  \begin{minipage}[c][1.5cm][c]{\hsize}\centering \end{minipage} & 
+  \begin{minipage}[c][1.5cm][c]{\hsize}\centering \end{minipage} & 
+  \begin{minipage}[c][1.5cm][c]{\hsize}\centering \end{minipage} \\
+  \hline
+  
+  \begin{minipage}[c][5cm][c]{1.5cm}
+    \centering 教\\师\\评\\语
+  \end{minipage} & 
+  \multicolumn{5}{c|}{
+    \begin{minipage}[c][3cm][c]{\dimexpr\textwidth-1.5cm-8\tabcolsep-2\arrayrulewidth\relax}
+      \centering
+    \end{minipage}
+  } \\
+  \hline
+\end{tabularx}}
+\end{center}
+
+\end{titlepage}
+
+
+%% 标题
+\begin{center}
+  {\CJKfamily{hei}\fontsize{22pt}{28pt}\selectfont 论文标题示例}
+\end{center}
+
+\begin{center}
+  {\CJKfamily{hei}\fontsize{16pt}{28pt}\selectfont --- 论文副标题示例}
+\end{center}
+
+\vspace{1em}
+
+
+%% 摘要：五号仿宋
+{\zhaiyao
+
+\textbf{摘要：}这是摘要部分，字体为仿宋体五号。这是摘要部分，字体为仿宋体五号。这是摘要部分，字体为仿宋体五号。这是摘要部分，字体为仿宋体五号。
+\par\textbf{关键词：}南京\hspace*{2em}财经\hspace*{2em}大学
+
+}
+
+\vspace{2em}
+
+
+%% 英文标题
+\begin{center}
+  {\fontsize{16pt}{28pt}\selectfont \textbf{Nanjing University of Finance and Economics}}
+\end{center}
+
+\begin{center}
+  {\fontsize{14pt}{28pt}\selectfont \textbf{ --- NUFE}}
+\end{center}
+
+
+%% 英文摘要：五号新罗马
+{\fontsize{10.5pt}{28pt}\selectfont
+
+\textbf{Abstract:~} Nanjing University of Finance and Economics Nanjing University of Finance and Economics Nanjing University of Finance and Economics 
+Nanjing University of Finance and Economics Nanjing University of Finance and Economics
+
+\par\textbf{Keywords:~} N\hspace*{2em}U\hspace*{2em}F\hspace*{2em}E
+
+}
+
+\newpage
+
+
+%% 正文内容：小四号仿宋
+{\zhengwen
+\section*{一、引言}
+
+该模板可以让使用者不再花大量的时间在排版和公式的转换上，\\
+从而\sout{可以直接使用AI快速生成内容}可以把精力集中在内容上。\par
+
+正文,二级标题及以下，均使用仿宋小四。\par
+
+\subsection*{(1)公式排版}
+
+    \subsubsection*{1.编号公式}
+        \begin{equation}
+            \int_{\gamma}^{}f(z)\dd z=2\pi i\cdot \mathrm{res}f(a)
+        \label{res}
+        \end{equation}
+公式(\ref{res})是复变函数的留数与复积分的关系
+    \subsubsection*{2.无编号公式}
+        
+        多行多列公式\footnote{如果公式中有文字出现，请用 $\backslash$mathrm\{\} 或者 $\backslash$text\{\} 包含，不然就会变成 $clip$，在公式里看起来比 $\mathrm{clip}$ 丑非常多。}
+        \begin{align*}
+            C(S, t) &= S \cdot N(d) - K e^{-r(T-t)} \cdot N(d - \sigma \sqrt{T-t})
+            \\ \text{其中有:~} d &= \frac{\ln(S/K) + (r + \sigma^2/2)(T-t)}{\sigma \sqrt{T-t}}
+        \end{align*}
+
+\section*{二、图片插入}
+
+\begin{itemize}
+        \item 矢量图 eps, ps, pdf
+        \begin{itemize}
+            \item METAPOST, pstricks, pgf $\ldots$
+            \item Xfig, Dia, Visio, Inkscape $\ldots$
+            \item Matlab / Excel 等保存为 pdf
+        \end{itemize}
+        \item 标量图 png, jpg, tiff $\ldots$
+        \begin{itemize}
+            \item 提高清晰度，避免发虚
+            \item 应尽量避免使用
+        \end{itemize}
+\end{itemize}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=8cm]{fig/nufe.png}
+    \tucaption{南财大校标}
+    \label{校标}
+\end{figure}
+图\ref{校标}是校标,不过是标量图.
+
+
+\section*{三、表格}
+
+{\biaoge
+\begin{table}[H]
+  \centering  %设置居中
+  \biaocaption{符号说明}  %表标题
+  \label{notion} %设置表的引用标签
+  \begin{tabular}{ccccccc} %7个c表示7列, c表示每列居中对齐, 还有l和r可选
+  \toprule  %画顶端横线
+  {\bf 符号}  & {\bf 描述}\\[0.2cm]
+  \midrule  %画中间横线
+
+$\nabla$ & Laplace算子 \\[0.2cm]
+
+$H$ & Hilbert空间 \\[0.2cm]
+
+$\mathbb{R}^n$ & n维Euclid空间 \\[0.2cm]
+
+$\mathscr{X}$ & 度量空间 \\[0.2cm]
+
+$B^*$ & 赋范线性空间 \\[0.2cm]
+
+$B$ & Banach空间 \\[0.2cm]
+
+$C_{[0,1]}$ & [0,1]上的全体连续函数 \\[0.2cm]
+
+\bottomrule  %画底部横线
+\end{tabular}
+\end{table}
+}
+表\ref{notion}是符号说明.
+
+
+}
+
+\vspace{2em}
+
+
+%% 参考文献：五号仿宋
+{\cankaowenxian
+
+\begin{center}
+  {\CJKfamily{hei}\fontsize{12pt}{28pt}\selectfont 参考文献}
+\end{center}
+
+[1] 刘国钧，陈绍业，王凤翥. 图书馆目录［M］. 北京：高等教育出版社，1957：15–18.
+
+[2] 辛希孟. 信息技术与信息服务国际研讨会论文集：A集［C］. 北京：中国社会科学出版社，1994.
+
+[3] 张筑生. 微分半动力系统的不变集［D］. 北京：北京大学数学系数学研究所，1983.
+
+[4] 冯西桥. 核反应堆压力管道与压力容器的LBB分析［R］. 北京：清华大学核能技术设计研究院，1997.
+
+[5] Powell, W W, Koput, K W, SmithDoerr, L. Interorganizational collaboration and the locus of innovation[J]. Administrative Science Quarterly, 1996, 41(1):116-145.
+
+}
+
+\end{document}
